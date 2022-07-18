@@ -13,6 +13,8 @@ package com.dinossauroProductions.main;
 	import java.awt.image.BufferedImage;
 
 	import javax.swing.JFrame;
+	
+	import com.dinossauroProductions.main.Input;
 
 
 	public class Game extends Canvas implements Runnable, KeyListener, MouseListener{
@@ -22,14 +24,16 @@ package com.dinossauroProductions.main;
 		public static JFrame frame;
 		private Thread thread;
 		public boolean isRunning = true;
-		public static final int WIDTH = 360*2;
-		public static final int HEIGHT = 160*2;
-		public static final double SCALE = 1;
+		public static final int res = 1;
+		public static final int WIDTH = 160*res;
+		public static final int HEIGHT = 120*res;
+		public static final double SCALE = 4;
 		public int maxFPS = 60;
 		private BufferedImage image;
 		public static int FPS = 0;
 		
-
+		public Input[] inputs = Input.setUpInputs();
+		
 		
 
 		public Game() {
@@ -105,7 +109,11 @@ package com.dinossauroProductions.main;
 			
 			//aplicar lógica
 			
-			//teste 2
+			for(int i = 0; i < inputs.length; i++) {
+				if(inputs[i].getState() == true) {
+					System.out.println(inputs[i].getName());
+				}
+			}
 			
 			
 			
@@ -126,7 +134,8 @@ package com.dinossauroProductions.main;
 			//render stuff
 			
 			
-			
+			g.setColor(Color.black);
+			g.fillRect(WIDTH/2, HEIGHT/2, 40, 40);
 			
 				
 			//stop render
@@ -143,6 +152,14 @@ package com.dinossauroProductions.main;
 		public void keyPressed(KeyEvent e) {
 			
 			
+			for(int i = 0; i < inputs.length; i++) {
+				if(inputs[i].getKeyCode(0) == e.getKeyCode() || inputs[i].getKeyCode(1) == e.getKeyCode()) {
+					//o input de número 'i' foi ativado.
+					inputs[i].setState(true);
+				}
+			}
+			
+			
 		}
 
 		public void keyReleased(KeyEvent e) {
@@ -152,6 +169,13 @@ package com.dinossauroProductions.main;
 				
 			}
 			*/
+			
+			for(int i = 0; i < inputs.length; i++) {
+				if(inputs[i].getKeyCode(0) == e.getKeyCode() || inputs[i].getKeyCode(1) == e.getKeyCode()) {
+					//o input de número 'i' foi desativado.
+					inputs[i].setState(false);
+				}
+			}
 					
 		}
 
