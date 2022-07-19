@@ -30,17 +30,19 @@ public class Player {
 			if(Game.inputs[Input.LEFT].getState() == true) {
 				//look left
 				a+=4;
-				if(a < 0) {
-					a+=360;
+				if(a > 359) {
+					a-=360;
 				}
+				
 			}
 			
 			if(Game.inputs[Input.RIGHT].getState() == true) {
 				//look right
 				a-=4;
-				if(a > 359) {
-					a-=360;
+				if(a < 0) {
+					a+=360;
 				}
+				
 			}
 		}
 		
