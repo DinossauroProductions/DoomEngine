@@ -28,11 +28,13 @@ package com.dinossauroProductions.main;
 		public static final int WIDTH = 160*res;
 		public static final int HEIGHT = 120*res;
 		public static final double SCALE = 4;
-		public int maxFPS = 60;
+		public int maxFPS = 20;
 		private BufferedImage image;
 		public static int FPS = 0;
 		
-		public Input[] inputs = Input.setUpInputs();
+		public static Input[] inputs = Input.setUpInputs();
+		
+		public static Player player;
 		
 		
 
@@ -49,6 +51,8 @@ package com.dinossauroProductions.main;
 		public static void main(String args[]) {
 			Game game = new Game();
 			game.start();
+			Utility.loadUtility();
+			player = new Player();
 		}
 		
 		public void initFrame() {
@@ -115,6 +119,8 @@ package com.dinossauroProductions.main;
 				}
 			}
 			
+			player.tick();
+			
 			
 			
 			
@@ -148,6 +154,23 @@ package com.dinossauroProductions.main;
 			bs.show();
 			
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//receber os inputs
 
 		public void keyPressed(KeyEvent e) {
 			
